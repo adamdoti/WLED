@@ -222,7 +222,6 @@ writeHtmlGzipped("wled00/data/index.htm", "wled00/html_ui.h", 'index');
 writeHtmlGzipped("wled00/data/simple.htm", "wled00/html_simple.h", 'simple');
 writeHtmlGzipped("wled00/data/pixart/pixart.htm", "wled00/html_pixart.h", 'pixart');
 writeHtmlGzipped("wled00/data/cpal/cpal.htm", "wled00/html_cpal.h", 'cpal');
-writeHtmlGzipped("wled00/data/pxmagic/pxmagic.htm", "wled00/html_pxmagic.h", 'pxmagic');
 /*
 writeChunks(
   "wled00/data",
@@ -387,6 +386,12 @@ const char PAGE_dmxmap[] PROGMEM = R"=====()=====";
     {
       file: "liveview.htm",
       name: "PAGE_liveview",
+      method: "gzip",
+      filter: "html-minify",
+    },
+    {
+      file: "liveviewws.htm",
+      name: "PAGE_liveviewws",
       method: "gzip",
       filter: "html-minify",
     },

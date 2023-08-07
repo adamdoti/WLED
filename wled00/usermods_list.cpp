@@ -133,10 +133,6 @@
   #include "../usermods/wizlights/wizlights.h"
 #endif
 
-#ifdef USERMOD_WIREGUARD
-  #include "../usermods/wireguard/wireguard.h"
-#endif
-
 #ifdef USERMOD_WORDCLOCK
   #include "../usermods/usermod_v2_word_clock/usermod_v2_word_clock.h"
 #endif
@@ -193,6 +189,17 @@
 #include "../usermods/pwm_outputs/usermod_pwm_outputs.h"
 #endif
 
+#ifdef USERMOD_TDISPLAY_V2
+#include "../usermods/TTGO-T-Display/usermod_v2_tdisplay.h"
+#endif
+
+#ifdef USERMOD_MULTI_THREAD
+#include "../usermods/multi_thread_v2/usermod_v2_multi_thread.h"
+#endif
+
+#ifdef USERMOD_MULTI_TDISPLAY
+#include "../usermods/multi_thread_v2/usermod_v2_multi_tdisplay.h"
+#endif
 
 void registerUsermods()
 {
@@ -310,10 +317,6 @@ void registerUsermods()
   usermods.add(new WizLightsUsermod());
   #endif
 
-  #ifdef USERMOD_WIREGUARD
-  usermods.add(new WireguardUsermod());
-  #endif
-
   #ifdef USERMOD_WORDCLOCK
   usermods.add(new WordClockUsermod());
   #endif
@@ -364,5 +367,19 @@ void registerUsermods()
 
   #ifdef USERMOD_SHT
   usermods.add(new ShtUsermod());
+  #endif
+
+  #ifdef USERMOD_TDISPLAY_V2
+  #include <TFT_eSPI.h>
+  usermods.add(new TDisplayUsermod());
+  #endif
+
+  #ifdef USERMOD_MULTI_THREAD
+  usermods.add(new  UsermodMultiThread());
+  #endif
+
+  #ifdef USERMOD_MULTI_TDISPLAY
+  #include <TFT_eSPI.h>
+  usermods.add(new TDisplayMultiUsermod());
   #endif
 }

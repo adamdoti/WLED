@@ -91,21 +91,6 @@
   #endif
 #endif
 
-#ifndef WLED_MAX_SEGNAME_LEN
-  #ifdef ESP8266
-    #define WLED_MAX_SEGNAME_LEN 32
-  #else
-    #define WLED_MAX_SEGNAME_LEN 64
-  #endif
-#else
-  #if WLED_MAX_SEGNAME_LEN<32
-    #undef WLED_MAX_SEGNAME_LEN
-    #define WLED_MAX_SEGNAME_LEN 32
-  #else
-    #warning WLED UI does not support modified maximum segment name length!
-  #endif
-#endif
-
 //Usermod IDs
 #define USERMOD_ID_RESERVED               0     //Unused. Might indicate no usermod present
 #define USERMOD_ID_UNSPECIFIED            1     //Default value for a general user mod that does not specify a custom ID
@@ -148,7 +133,9 @@
 #define USERMOD_ID_PWM_OUTPUTS           38     //Usermod "usermod_pwm_outputs.h
 #define USERMOD_ID_SHT                   39     //Usermod "usermod_sht.h
 #define USERMOD_ID_KLIPPER               40     // Usermod Klipper percentage
-#define USERMOD_ID_WIREGUARD             41     //Usermod "wireguard.h"
+#define USERMOD_ID_TDISPLAY              51     // Usermod "usermod_v2_tdisplay.h"
+#define USERMOD_ID_MULTI_THREAD          52     // Usermod "usermod_v2_multi_thread.h"
+#define USERMOD_ID_MULTI_TDISPLAY        53     // Usermod "usermod_v2_multi_tdisplay.h"
 
 //Access point behavior
 #define AP_BEHAVIOR_BOOT_NO_CONN          0     //Open AP when no connection after boot
@@ -404,7 +391,7 @@
 #ifdef ESP8266
 #define SETTINGS_STACK_BUF_SIZE 2048
 #else
-#define SETTINGS_STACK_BUF_SIZE 3608  // warning: quite a large value for stack
+#define SETTINGS_STACK_BUF_SIZE 3096
 #endif
 
 #ifdef WLED_USE_ETHERNET
